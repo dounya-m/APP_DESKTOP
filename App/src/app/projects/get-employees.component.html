@@ -1,0 +1,237 @@
+<style>
+    .title{
+    color: var(--group-color);
+    font-size: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.description{
+    color: var(--group-color);
+    font-size: 17px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.description span{
+    font-weight: bold;
+}
+
+.create-carte{
+    padding: 2% 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.table-header{
+    display: flex;
+    border-bottom: solid 1px;
+    padding: 1% 0;
+}
+
+.table-body{
+    display: flex;
+    padding: 1% 0;
+}
+
+.header-items{
+    font-weight: 700;
+    width: 17%;
+}
+
+.body-item{
+    width: 17%;
+}
+
+.last-item{
+    width: 6%;
+}
+
+.first-item{
+    padding-left: 5%;
+}
+
+.row{
+    background-color: var(--group-background);
+}
+
+.table{
+    width: 73rem;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+</style>
+
+<div class="create-carte">
+    <h2 class="title">List Of Employees</h2>
+    <p class="description">Here you can find all employees , There is {{count}} Employee</p>
+
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+            <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+      
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="fruit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+            <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+      
+
+      
+    <!-- <div class="table">
+        <div class="table-header">
+            <div class="header-items first-item">
+                Full Name
+            </div>
+            <div class="header-items">
+                Phone Number
+            </div>
+            <div class="header-items">
+                Email Address
+            </div>
+            <div class="header-items">
+                Departement
+            </div>
+            <div class="header-items">
+                Matricule
+            </div>
+            <div class="header-items last-item">
+                Salary
+            </div>
+        </div>
+
+        <div>
+            <div class="table-body row">
+                <div class="body-item first-item">
+                    Ayoub Bsd
+                </div>
+                <div class="body-item">
+                    +212 11111111
+                </div>
+                <div class="body-item">
+                    ayoubbsd4@gmail.com
+                </div>
+                <div class="body-item">
+                    Development It
+                </div>
+                <div class="body-item">
+                    BSD11012
+                </div>
+                <div class="body-item last-item">
+                    12.000 DH
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="body-item first-item">
+                    Ayoub Bsd
+                </div>
+                <div class="body-item">
+                    +212 11111111
+                </div>
+                <div class="body-item">
+                    ayoubbsd4@gmail.com
+                </div>
+                <div class="body-item">
+                    Development It
+                </div>
+                <div class="body-item">
+                    BSD11012
+                </div>
+                <div class="body-item last-item">
+                    12.000 DH
+                </div>
+            </div>
+            <div class="table-body row">
+                <div class="body-item first-item">
+                    Ayoub Bsd
+                </div>
+                <div class="body-item">
+                    +212 11111111
+                </div>
+                <div class="body-item">
+                    ayoubbsd4@gmail.com
+                </div>
+                <div class="body-item">
+                    Development It
+                </div>
+                <div class="body-item">
+                    BSD11012
+                </div>
+                <div class="body-item last-item">
+                    12.000 DH
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="body-item first-item">
+                    Ayoub Bsd
+                </div>
+                <div class="body-item">
+                    +212 11111111
+                </div>
+                <div class="body-item">
+                    ayoubbsd4@gmail.com
+                </div>
+                <div class="body-item">
+                    Development It
+                </div>
+                <div class="body-item">
+                    BSD11012
+                </div>
+                <div class="body-item last-item">
+                    12.000 DH
+                </div>
+            </div>
+        </div>
+
+        
+    </div> -->
+</div>
